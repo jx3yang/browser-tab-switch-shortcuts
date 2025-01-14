@@ -1,6 +1,6 @@
 {
-  "name": "Extension Name",
-  "description": "Extension Description",
+  "name": "Browser Tab Switch Shortcuts",
+  "description": "Browser shortcuts to switch browser tabs on Windows",
   "version": "0.1.0",
   "manifest_version": 3,
   "action": {
@@ -10,10 +10,22 @@
   "background": {
     "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches": ["https://*/*"],
-      "js": ["content.js"]
+  "commands": {
+    "switch_tab_left": {
+      "suggested_key": {
+        "windows": "Ctrl+Left"
+      },
+      "description": "Switch tab to left"
+    },
+    "switch_tab_right": {
+      "suggested_key": {
+        "windows": "Ctrl+Right"
+      },
+      "description": "Switch tab to right"
     }
+  },
+  "permissions": [
+    "tabs",
+    "tabGroups"
   ]
 }
