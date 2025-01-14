@@ -13,13 +13,13 @@
   "commands": {
     "switch_tab_left": {
       "suggested_key": {
-        "windows": "Ctrl+Left"
+        "windows": "Alt+Shift+Left"
       },
       "description": "Switch tab to left"
     },
     "switch_tab_right": {
       "suggested_key": {
-        "windows": "Ctrl+Right"
+        "windows": "Alt+Shift+Right"
       },
       "description": "Switch tab to right"
     }
