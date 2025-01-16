@@ -22,6 +22,12 @@
         "windows": "Alt+Shift+Right"
       },
       "description": "Switch tab to right"
+    },
+    "pop_new_window": {
+      "suggested_key": {
+        "windows": "Alt+X"
+      },
+      "description": "Detach the current tab to a new window"
     }
   },
   "permissions": [

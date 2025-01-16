@@ -24,13 +24,25 @@ const updateTab = (command: string, currentTabIndex: number, allTabs: chrome.tab
 }
 
 chrome.commands.onCommand.addListener((command: string) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (activeTabs: chrome.tabs.Tab[]) => {
-        if (activeTabs.length === 0) {
-            return;
-        }
-        const currentTabIndex = activeTabs[0].index;
-        chrome.tabs.query({ currentWindow: true }, (allTabs: chrome.tabs.Tab[]) => {
-            updateTab(command, currentTabIndex, allTabs);
+    if (command === "switch_tab_left" || command === "switch_tab_right") {
+        chrome.tabs.query({ active: true, currentWindow: true }, (activeTabs: chrome.tabs.Tab[]) => {
+            if (activeTabs.length === 0) {
+                return;
+            }
+            const currentTabIndex = activeTabs[0].index;
+            chrome.tabs.query({ currentWindow: true }, (allTabs: chrome.tabs.Tab[]) => {
+                updateTab(command, currentTabIndex, allTabs);
+            });
         });
-    });
+    }
+
+    if (command === "pop_new_window") {
+        chrome.tabs.query({ active: true, currentWindow: true }, (activeTabs: chrome.tabs.Tab[]) => {
+            if (activeTabs.length === 0) {
+                return;
+            }
+            const tabId = activeTabs[0].id;
+            chrome.windows.create({ tabId, focused: true });
+        });
+    }
 });
