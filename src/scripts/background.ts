@@ -37,12 +37,14 @@ chrome.commands.onCommand.addListener((command: string) => {
     }
 
     if (command === "pop_new_window") {
-        chrome.tabs.query({ active: true, currentWindow: true }, (activeTabs: chrome.tabs.Tab[]) => {
-            if (activeTabs.length <= 1) {
+        chrome.tabs.query({ currentWindow: true }, (allTabs: chrome.tabs.Tab[]) => {
+            if (allTabs.length <= 1) {
                 return;
             }
-            const tabId = activeTabs[0].id;
-            chrome.windows.create({ tabId, focused: true });
+            const tabId = allTabs.find((tab) => tab.active)?.id;
+            if (tabId != undefined) {
+                chrome.windows.create({ tabId, focused: true });
+            }
         });
     }
 });
