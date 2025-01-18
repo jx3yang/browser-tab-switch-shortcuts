@@ -38,7 +38,7 @@ chrome.commands.onCommand.addListener((command: string) => {
 
     if (command === "pop_new_window") {
         chrome.tabs.query({ active: true, currentWindow: true }, (activeTabs: chrome.tabs.Tab[]) => {
-            if (activeTabs.length === 0) {
+            if (activeTabs.length <= 1) {
                 return;
             }
             const tabId = activeTabs[0].id;
